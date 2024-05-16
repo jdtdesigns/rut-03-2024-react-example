@@ -1,3 +1,7 @@
+* {
+  font-family: sans-serif;
+}
+
 /* Global Classes */
 .row {
   display: flex;
@@ -11,11 +15,22 @@
   align-items: center;
 }
 
+.text-center {
+  text-align: center;
+}
+
 /* Custom Styles */
 header {
   padding: 0 3%;
 }
 
-.red {
-  background: red;
+.work {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  padding: 20px 3%;
+}
+
+footer {
+  padding: 35px 3%;
 }

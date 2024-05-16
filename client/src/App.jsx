@@ -1,23 +1,18 @@
-
-const styles = {
-  headerStyles: {
-    background: '#555',
-    color: '#eee'
-  }
-}
+import Header from './components/Header'
+import Hero from './components/Hero'
+import Work from './components/Work'
+import Footer from './components/Footer'
 
 function App() {
   return (
     <main>
-      <header style={styles.headerStyles} className="row justify-between align-center">
-        <h3>Logo</h3>
+      <Header />
 
-        <nav>
-          <a className="red" href="/">Home</a>
-          <a href="/about">About</a>
-          <a href="/contact">Contact</a>
-        </nav>
-      </header>
+      <Hero />
+
+      <Work />
+
+      <Footer />
     </main>
   )
 }

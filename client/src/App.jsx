@@ -1,20 +1,56 @@
+import { useState } from 'react'
+
 import Header from './components/Header'
-import Hero from './components/Hero'
-import Work from './components/Work'
 import Footer from './components/Footer'
+import Modal from './components/Modal'
+
+import Landing from './pages/Landing'
+import About from './pages/About'
+import Contact from './pages/Contact'
 
 function App() {
+  const [darkMode, setDarkMode] = useState(false)
+  const [showModal, setShowModal] = useState(false)
+
   return (
-    <main>
-      <Header />
+    <main className={darkMode ? 'dark' : ''}>
 
-      <Hero />
+      <Header darkMode={darkMode} setDarkMode={setDarkMode} />
 
-      <Work />
+      <Landing />
+
+      <About />
+
+      <Contact />
 
       <Footer />
+
+      {showModal && <Modal />}
+
     </main>
   )
 }
 
 export default App
+
+// function useState(initialValue) {
+//   const setterFunction = (newValue) => {
+//     initialValue = newValue
+//   }
+
+//   return [initialValue, setterFuction]
+// }
+
+// const [something, setSomething] = useState('some string')
+
+// // something = 'another string'
+// setSomething('another string')
+
+// console.log(something)
+
+
+
+
+
+
+

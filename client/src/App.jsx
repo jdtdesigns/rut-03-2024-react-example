@@ -33,21 +33,6 @@ function App() {
 
 export default App
 
-// function useState(initialValue) {
-//   const setterFunction = (newValue) => {
-//     initialValue = newValue
-//   }
-
-//   return [initialValue, setterFuction]
-// }
-
-// const [something, setSomething] = useState('some string')
-
-// // something = 'another string'
-// setSomething('another string')
-
-// console.log(something)
-
 
 
 

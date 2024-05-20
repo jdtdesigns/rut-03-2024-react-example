@@ -3,11 +3,11 @@ import CallToAction from './components/CallToAction'
 
 import './hero.scss'
 
-function Hero() {
+function Hero(props) {
   return (
     <section className="hero">
       <Title />
-
+      <p>Made by {props.fullName}!</p>
       <CallToAction />
     </section>
   )

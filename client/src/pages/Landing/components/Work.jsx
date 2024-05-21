@@ -1,4 +1,5 @@
 import WorkItem from './WorkItem'
+import { Row } from 'react-bootstrap'
 
 function Work() {
   const workItems = [
@@ -23,13 +24,13 @@ function Work() {
   ]
 
   return (
-    <section className="work">
+    <Row as="section">
 
       {workItems.map((itemObj, index) => (
         <WorkItem key={index} itemObj={itemObj} />
       ))}
 
-    </section>
+    </Row>
   )
 }
 

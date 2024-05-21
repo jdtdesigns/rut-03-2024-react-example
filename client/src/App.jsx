@@ -14,13 +14,13 @@ function App() {
   const [showModal, setShowModal] = useState(false)
 
   return (
-    <main className={darkMode ? 'dark' : ''}>
+    <main className={`d-flex flex-column ${darkMode ? 'dark' : ''}`}>
 
       <Header
         setDarkMode={setDarkMode}
         setShowModal={setShowModal} />
 
-      <div className="content">
+      <div className="content flex-fill">
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/about" element={<About />} />
@@ -30,7 +30,7 @@ function App() {
 
       <Footer />
 
-      {showModal && <Modal setShowModal={setShowModal} />}
+      <Modal showModal={showModal} setShowModal={setShowModal} />
 
     </main>
   )

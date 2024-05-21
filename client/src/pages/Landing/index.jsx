@@ -1,12 +1,16 @@
 import Hero from './components/Hero'
 import Work from './components/Work'
 
+import { Container } from 'react-bootstrap'
+
 function Landing() {
   return (
     <>
       <Hero />
 
-      <Work />
+      <Container fluid>
+        <Work />
+      </Container>
     </>
   )
 }

@@ -1,3 +1,5 @@
+import { Modal as BSModal, Button } from 'react-bootstrap'
+
 function Modal(props) {
 
   const hideModal = () => {
@@ -5,11 +7,17 @@ function Modal(props) {
   }
 
   return (
-    <div className="modal">
-      <h3>Modal Example</h3>
-      <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magni qui nostrum minus amet numquam atque eum enim eaque reiciendis.</p>
-      <button onClick={hideModal}>Close Modal</button>
-    </div>
+    <BSModal show={props.showModal} className="">
+      <BSModal.Header>
+        <BSModal.Title>Modal Example</BSModal.Title>
+      </BSModal.Header>
+      <BSModal.Body>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magni qui nostrum minus amet numquam atque eum enim eaque reiciendis.</p>
+      </BSModal.Body>
+      <BSModal.Footer>
+        <Button variant="secondary" onClick={hideModal}>Close Modal</Button>
+      </BSModal.Footer>
+    </BSModal>
   )
 }
 

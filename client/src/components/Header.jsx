@@ -12,18 +12,18 @@ function Header(props) {
   }
 
   return (
-    <header className="row justify-between align-center">
+    <header className="d-flex justify-content-between px-3 py-4">
       <h3>Logo</h3>
 
       <nav>
         {/* Hide the button when showModal is true and show it when showModal is false */}
-        <button onClick={showModal}>Show Modal</button>
+        <button className="me-4" onClick={showModal}>Show Modal</button>
 
-        <button onClick={toggleDarkMode}>Dark Mode</button>
+        <button className="me-4" onClick={toggleDarkMode}>Dark Mode</button>
 
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="/about">About</NavLink>
-        <NavLink to="/contact">Contact</NavLink>
+        <NavLink className="me-2" to="/">Home</NavLink>
+        <NavLink className="me-2" to="/about">About</NavLink>
+        <NavLink className="me-2" to="/contact">Contact</NavLink>
       </nav>
     </header>
   )

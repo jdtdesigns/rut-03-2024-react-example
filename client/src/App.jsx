@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Routes, Route } from 'react-router-dom'
 
 import Header from './components/Header'
 import Footer from './components/Footer'
@@ -15,17 +16,21 @@ function App() {
   return (
     <main className={darkMode ? 'dark' : ''}>
 
-      <Header darkMode={darkMode} setDarkMode={setDarkMode} />
+      <Header
+        setDarkMode={setDarkMode}
+        setShowModal={setShowModal} />
 
-      <Landing />
-
-      <About />
-
-      <Contact />
+      <div className="content">
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
+      </div>
 
       <Footer />
 
-      {showModal && <Modal />}
+      {showModal && <Modal setShowModal={setShowModal} />}
 
     </main>
   )

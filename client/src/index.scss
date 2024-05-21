@@ -27,6 +27,16 @@ html, body, #root, main {
 }
 
 /* Custom Styles */
+main {
+  display: flex;
+  flex-direction: column;
+
+  .content {
+    flex: 1;
+  }
+}
+
+
 main.dark {
   background: #555;
   color: #eee;
@@ -49,8 +59,13 @@ header {
     }
 
     a {      
+      text-decoration: none;
       &:not(:last-child) {
         margin-right: 8px;
+      }
+
+      &.active {
+        text-decoration: underline;
       }
     }
   }

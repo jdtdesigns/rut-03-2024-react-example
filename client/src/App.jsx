@@ -1,83 +1,82 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import axios from 'axios'
 
+const initialFormState = {
+  username: '',
+  email: '',
+  message: '',
+  getAds: false,
+  access_key: '45ea0a30-6748-4a2f-b94b-e69469fa4e0b',
+  subject: 'Message From User'
+}
+
 function App() {
-  const [charData, setCharData] = useState([])
-  const [character, setCharacter] = useState(null)
-  const [search, setSearch] = useState('')
-
-  useEffect(() => {
-    const url = 'https://swapi.dev/api/people'
-
-    // fetch('/api/users', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   },
-    //   body: JSON.stringify(userData)
-    // })
-
-    // axios.post('/api/users', userData)
-    //   .then(res => {
-
-    //   })
-
-    // fetch(url)
-    //   .then(res => res.json())
-    //   .then(data => {
-    //     setCharData(data.results)
-    //   })
-
-    axios.get(url)
-      .then(res => {
-        setCharData(res.data.results)
-        console.log(res.data.results)
-      })
-  }, [])
-
-  const getData = () => {
-    const url = `https://swapi.dev/api/people?search=${search}`
-
-    axios.get(url)
-      .then(res => {
-        console.log(res.data)
-        setCharData(res.data.results)
-      })
-  }
+  const [formData, setFormData] = useState(initialFormState)
 
   const handleInputChange = (event) => {
-    setSearch(event.target.value)
+    const input = event.target.name
+
+    if (input === 'getAds') {
+      return setFormData({
+        ...formData,
+        getAds: event.target.checked
+      })
+    }
+
+    setFormData({
+      ...formData,
+      [event.target.name]: event.target.value
+    })
+  }
+
+  const handleSubmit = async (event) => {
+    event.preventDefault()
+
+    const url = 'https://api.web3forms.com/submit'
+
+    const res = await axios.post(url, formData)
+
+    setFormData({ ...initialFormState })
   }
 
   return (
     <>
-      <h1>Main Base</h1>
+      <h1>Forms Advanced</h1>
 
-      {/* <p>{search}</p> */}
+      <form onSubmit={handleSubmit}>
+        <input
+          onChange={handleInputChange}
+          name="username"
+          type="username"
+          value={formData.username}
+          placeholder="Enter your username" required />
 
-      <input onChange={handleInputChange} onKeyDown={(e) => {
-        if (e.key === 'Enter') getData()
-      }} type="text" placeholder="Type a character name" />
+        <input
+          onChange={handleInputChange}
+          name="email"
+          type="email"
+          value={formData.email}
+          placeholder="Enter your email" required />
 
-      <main>
-        {character && (
-          <div>
-            <h3>Name: {character.name}</h3>
-            <p>Born: {character.birth_year}</p>
-          </div>
-        )}
+        <textarea
+          onChange={handleInputChange}
+          name="message"
+          value={formData.message}
+          placeholder="Enter your message"
+          rows="3" required></textarea>
 
-        <button onClick={getData}>Get Character</button>
+        <label htmlFor="advertisements">
+          Receive Ads?
+          <input
+            onChange={handleInputChange}
+            name="getAds"
+            id="advertisements"
+            checked={formData.getAds}
+            type="checkbox" />
+        </label>
 
-        {!charData.length && <p>Loading...</p>}
-
-        {charData.map((charObj, index) => (
-          <div key={charObj.url}>
-            <h3>Name: {charObj.name}</h3>
-            <p>Born: {charObj.birth_year}</p>
-          </div>
-        ))}
-      </main>
+        <button>Submit</button>
+      </form>
     </>
   )
 }

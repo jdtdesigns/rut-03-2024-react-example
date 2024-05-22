@@ -9,6 +9,25 @@ function App() {
   useEffect(() => {
     const url = 'https://swapi.dev/api/people'
 
+    // fetch('/api/users', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   },
+    //   body: JSON.stringify(userData)
+    // })
+
+    // axios.post('/api/users', userData)
+    //   .then(res => {
+
+    //   })
+
+    // fetch(url)
+    //   .then(res => res.json())
+    //   .then(data => {
+    //     setCharData(data.results)
+    //   })
+
     axios.get(url)
       .then(res => {
         setCharData(res.data.results)

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import axios from 'axios'
 
 const initialFormState = {
@@ -12,6 +12,13 @@ const initialFormState = {
 
 function App() {
   const [formData, setFormData] = useState(initialFormState)
+
+  useEffect(() => {
+    axios.get('/api/test')
+      .then(res => {
+        console.log(res.data)
+      })
+  }, [])
 
   const handleInputChange = (event) => {
     const input = event.target.name

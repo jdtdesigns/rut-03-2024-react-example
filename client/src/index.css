@@ -12,6 +12,16 @@
 }
 
 /* Custom Styles */
+nav a {
+  color: #000;
+  margin: 0 8px;
+  text-decoration: none;
+}
+
+nav a.active {
+  text-decoration: underline;
+}
+
 form {
   width: 450px;
   display: flex;
@@ -21,4 +31,35 @@ form {
 form > * {
   padding: 5px 10px;
   margin-bottom: 8px;
+}
+
+.auth-toggle-wrap {
+  display: flex;
+  align-items: center;
+}
+
+form .toggle-bar {
+  width: 75px;
+  height: 28px;
+  border-radius: 30px;
+  background: #ccc;
+  margin: 0 8px;
+  position: relative;
+  cursor: pointer;
+}
+
+form .toggle-switch {
+  position: absolute;
+  content: '';
+  top: 2px;
+  left: 4px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #999;
+  transition: left .3s;
+}
+
+form .toggle-switch.toggle {
+  left: 47px;
 }

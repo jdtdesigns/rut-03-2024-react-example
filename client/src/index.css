@@ -1,3 +1,7 @@
+html, body, #root, .loading {
+  height: 100%;
+}
+
 /* Global Classes */
 .row {
   display: flex;
@@ -12,7 +16,21 @@
 }
 
 /* Custom Styles */
-nav a {
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #777;
+  font-family: 'Lato';
+  font-weight: 300;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+}
+
+nav a, nav p {
   color: #000;
   margin: 0 8px;
   text-decoration: none;

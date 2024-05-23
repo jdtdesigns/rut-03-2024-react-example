@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 const initialFormState = {
@@ -8,8 +9,9 @@ const initialFormState = {
   isLogin: true
 }
 
-function AuthForm() {
+function AuthForm(props) {
   const [formData, setFormData] = useState(initialFormState)
+  const navigate = useNavigate()
 
   const handleInputChange = (event) => {
     const input = event.target.name
@@ -27,8 +29,8 @@ function AuthForm() {
 
     const res = await axios.post(url, formData)
 
-    console.log(res.data)
-    // setFormData({ ...initialFormState })
+    props.setUser(res.data)
+    navigate('/')
   }
 
   const toggleAuthType = () => {

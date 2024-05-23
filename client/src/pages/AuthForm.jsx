@@ -5,7 +5,7 @@ const initialFormState = {
   username: '',
   email: '',
   password: '',
-  isLogin: false
+  isLogin: true
 }
 
 function AuthForm() {
@@ -43,12 +43,14 @@ function AuthForm() {
       <h1>{formData.isLogin ? 'Log In' : 'Register'}</h1>
 
       <form onSubmit={handleSubmit}>
-        <input
-          onChange={handleInputChange}
-          name="username"
-          type="username"
-          value={formData.username}
-          placeholder="Enter your username" required />
+        {!formData.isLogin && (
+          <input
+            onChange={handleInputChange}
+            name="username"
+            type="username"
+            value={formData.username}
+            placeholder="Enter your username" required />
+        )}
 
         <input
           onChange={handleInputChange}

@@ -15,8 +15,13 @@ const typeDefs = gql`
   }
 
   type Query {
+    getPost(post_id: String!): Post
     getPosts: [Post]
     getUser: User
+  }
+
+  type Mutation {
+    createPost(title: String!, body: String!): Post
   }
 `
 

@@ -13,11 +13,18 @@ const Post = require('../models/Post')
 
 const resolvers = {
   Query: {
+    async getPost(_, args) {
+      const post = await Post.findById(args.post_id)
+
+      return post
+    },
+
     async getPosts() {
       const posts = await Post.find()
 
       return posts
     },
+
     getUser() {
       return {
         _id: 'adklafjdslfkjadslfkj',
@@ -38,11 +45,13 @@ const resolvers = {
     }
   },
 
-  // Mutation: {
-  //   test() {
+  Mutation: {
+    async createPost(_, args) {
+      const post = await Post.create(args)
 
-  //   }
-  // }
+      return post
+    }
+  }
 }
 
 module.exports = resolvers

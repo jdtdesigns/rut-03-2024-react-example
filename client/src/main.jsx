@@ -5,6 +5,9 @@ import './index.css'
 
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
 
+import { BrowserRouter } from 'react-router-dom'
+import { StoreProvider } from './store'
+
 const client = new ApolloClient({
   uri: '/graphql',
   cache: new InMemoryCache(),
@@ -13,7 +16,11 @@ const client = new ApolloClient({
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ApolloProvider client={client}>
-      <App />
+      <BrowserRouter>
+        <StoreProvider>
+          <App />
+        </StoreProvider>
+      </BrowserRouter>
     </ApolloProvider>
   </React.StrictMode>,
 )

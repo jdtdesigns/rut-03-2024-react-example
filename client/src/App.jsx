@@ -1,31 +1,56 @@
 import { useQuery } from '@apollo/client'
+import { Routes, Route, NavLink } from 'react-router-dom'
 
 import PostForm from './pages/PostForm'
+import SinglePost from './pages/SinglePost'
 
 import { GET_POSTS } from './graphql/queries'
+import { useStore } from './store'
 
-function App() {
+function Landing() {
   const { loading, error, data } = useQuery(GET_POSTS)
-
-  if (data) {
-    console.log(data)
-  }
 
   return (
     <>
-      <h1>Main Base</h1>
-
       {loading && <p>Loading...</p>}
 
-      <PostForm />
-
-      {data && data.getPosts.map(post => (
+      {data?.getPosts.map(post => (
         <div key={post._id}>
           <h2>{post.title}</h2>
           <p>{post.body}</p>
-          <a href="#">View Post</a>
+          <NavLink to={`/post/${post._id}`}>View Post</NavLink>
         </div>
       ))}
+    </>
+  )
+}
+
+function Header() {
+  const { state } = useStore()
+
+  return (
+    <header>
+      <h3>{state.title}</h3>
+    </header>
+  )
+}
+
+
+function App() {
+  return (
+    <>
+      <Header />
+
+      <NavLink to="/">Home</NavLink>
+      <br />
+      <br />
+
+      <PostForm />
+
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="/post/:id" element={<SinglePost />} />
+      </Routes>
     </>
   )
 }

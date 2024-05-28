@@ -9,3 +9,13 @@ export const GET_POSTS = gql`
     }
   }
 `
+
+export const GET_SINGLE_POST = gql`
+  query GetPost($post_id: String!) {
+    getPost(post_id: $post_id) {
+      _id
+      body
+      title
+    }
+  }
+`

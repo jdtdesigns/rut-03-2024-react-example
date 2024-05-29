@@ -12,10 +12,49 @@
 }
 
 /* Custom Styles */
+.load-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 header {
   padding: 0 3%;
+  display: flex;
+  justify-content: space-between;
+}
+
+header nav {
+  display: flex;
+  align-items: center;
+}
+
+header nav h3 {
+  margin-right: 10px;
+}
+
+header nav a {
+  margin: 0 5px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+}
+
+form > * {
+  padding: 7px 15px;
+  margin-bottom: 5px;;
 }
 
 .red {
   background: red;
 }
+

@@ -19,3 +19,11 @@ export const GET_SINGLE_POST = gql`
     }
   }
 `
+
+export const AUTHENTICATE = gql`
+  query Query {
+    authenticate {
+      username
+    }
+  }
+`

@@ -3,13 +3,30 @@ import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
 
-import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
+import { ApolloClient, InMemoryCache, ApolloProvider, HttpLink } from '@apollo/client'
+import { onError } from '@apollo/client/link/error'
 
 import { BrowserRouter } from 'react-router-dom'
 import { StoreProvider } from './store'
 
-const client = new ApolloClient({
+const errorLink = onError(({ graphQLErrors, networkError }) => {
+  if (graphQLErrors) {
+    graphQLErrors.forEach(({ message, locations, path }) => {
+      console.error(`[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`)
+    })
+  }
+
+  if (networkError) {
+    console.error(`[Network error]: ${networkError}`)
+  }
+})
+
+const httpLink = new HttpLink({
   uri: '/graphql',
+})
+
+const client = new ApolloClient({
+  link: errorLink.concat(httpLink),
   cache: new InMemoryCache(),
 })
 

@@ -1,13 +1,28 @@
-import { useContext, createContext, useState } from 'react'
+import { useContext, createContext, useState, useEffect } from 'react'
+import { useQuery } from '@apollo/client'
+
+import { AUTHENTICATE } from '../graphql/queries'
 
 const Context = createContext()
 
 export function StoreProvider(props) {
+  const { data } = useQuery(AUTHENTICATE)
+
   const initialState = {
-    title: 'GraphQL React'
+    title: 'GraphQL React',
+    loading: true,
+    user: null
   }
 
   const [state, setState] = useState(initialState)
+
+  useEffect(() => {
+    setState({
+      ...state,
+      loading: false,
+      user: data?.authenticate
+    })
+  }, [data])
 
   return (
     <Context.Provider value={{ state, setState }}>

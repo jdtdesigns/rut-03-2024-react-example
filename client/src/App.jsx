@@ -3,16 +3,23 @@ import { Routes, Route, NavLink } from 'react-router-dom'
 
 import PostForm from './pages/PostForm'
 import SinglePost from './pages/SinglePost'
+import UserForm from './pages/UserForm'
 
 import { GET_POSTS } from './graphql/queries'
 import { useStore } from './store'
 
 function Landing() {
-  const { loading, error, data } = useQuery(GET_POSTS)
+  const { state } = useStore()
+
+  const { error, data } = useQuery(GET_POSTS)
 
   return (
     <>
-      {loading && <p>Loading...</p>}
+      {state.loading && <div className="load-overlay">
+        <h1>Loading...</h1>
+      </div>}
+
+      <PostForm />
 
       {data?.getPosts.map(post => (
         <div key={post._id}>
@@ -31,6 +38,20 @@ function Header() {
   return (
     <header>
       <h3>{state.title}</h3>
+
+      <nav>
+        {state.user ? (
+          <>
+            <h3>Welcome, {state.user.username}</h3>
+            <a href="#">Log Out</a>
+          </>
+        ) : (
+          <>
+            <NavLink to="/">Home</NavLink>
+            <NavLink to="/auth">Log In</NavLink>
+          </>
+        )}
+      </nav>
     </header>
   )
 }
@@ -41,14 +62,9 @@ function App() {
     <>
       <Header />
 
-      <NavLink to="/">Home</NavLink>
-      <br />
-      <br />
-
-      <PostForm />
-
       <Routes>
         <Route path="/" element={<Landing />} />
+        <Route path="/auth" element={<UserForm />} />
         <Route path="/post/:id" element={<SinglePost />} />
       </Routes>
     </>
